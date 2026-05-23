@@ -1,6 +1,7 @@
 # Single-Cycle RISC-V Processor Design
 ![Verilog](https://img.shields.io/badge/HDL-Verilog-blue)
 ![RISC-V](https://img.shields.io/badge/ISA-RISC--V-orange)
+![Assembly](https://img.shields.io/badge/Language-RISC--V%20Assembly-red)
 
 This repository contains the design and hardware description implementation of a **Single-Cycle RISC-V Processor**.The objective of this project is to structurally model the processor's datapath and behaviorally implement its control unit using **Verilog HDL**, followed by functional verification via simulation
 
