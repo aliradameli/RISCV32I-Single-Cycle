@@ -2,7 +2,12 @@
 ![Verilog](https://img.shields.io/badge/HDL-Verilog-blue)
 ![RISC-V](https://img.shields.io/badge/ISA-RISC--V-orange)
 ![Assembly](https://img.shields.io/badge/Language-RISC--V%20Assembly-red)
-![Collabrator ID](https://img.shields.io/badge/amirmy1382--orange)
+
+## Authors & Contributors
+This project was co-developed with my colleague as part of our Computer Architecture coursework. You can find our GitHub profiles below:
+
+* **Amir Morteza Yoosefi** - [@amirmy1382](https://github.com/amirmy1382)
+* **Alirad Ameli** - [GitHub Profile](https://github.com/aliradameli)
 
 A comprehensive, high-performance hardware implementation of a 32-bit single-cycle RISC-V processor core written from the ground up in structural and combinational Verilog HDL. Designed to adhere strictly to the microarchitectural constraints of modular layout configurations, this processor maps complex instruction fields directly to execution paths within a single clock cycle. It operates efficiently on a specialized subset of the RV32I base integer instruction set, striking an ideal balance between minimal propagation delay and hardware efficiency.
 
