@@ -2,7 +2,7 @@
 ![Verilog](https://img.shields.io/badge/HDL-Verilog-blue)
 ![RISC-V](https://img.shields.io/badge/ISA-RISC--V-orange)
 ![Assembly](https://img.shields.io/badge/Language-RISC--V%20Assembly-red)
-![Collabrator ID](https://img.shields.io/badge/amirmy1382--yellow)
+![Collabrator ID](https://img.shields.io/badge/amirmy1382--Collabrator-yellow)
 
 A comprehensive, high-performance hardware implementation of a 32-bit single-cycle RISC-V processor core written from the ground up in structural and combinational Verilog HDL. Designed to adhere strictly to the microarchitectural constraints of modular layout configurations, this processor maps complex instruction fields directly to execution paths within a single clock cycle. It operates efficiently on a specialized subset of the RV32I base integer instruction set, striking an ideal balance between minimal propagation delay and hardware efficiency.
 
@@ -97,8 +97,8 @@ The next program address calculation selects from three distinct structural bran
 
 ## Verification Program: In-Memory Signed Integer Sorting
 
-To validate the operational correctness, cycle timing, and signal integrity of the complete single-cycle implementation under standard operating parameters, the design is verified against an integrated hardware testing routine: [cite: 20]
+To validate the operational correctness, cycle timing, and signal integrity of the complete single-cycle implementation under standard operating parameters, the design is verified against an integrated hardware testing routine: 
 
-* [cite_start]**Functional Objective:** The processor core executes an assembly application program that implements an in-memory sorting algorithm (such as bubble sort or selection sort) targeting a contiguous 10-element array of signed 32-bit integers. [cite: 20]
+* **Functional Objective:** The processor core executes an assembly application program that implements an in-memory sorting algorithm (such as bubble sort or selection sort) targeting a contiguous 10-element array of signed 32-bit integers. 
 
-* **Instruction Coverage & Stress Profile:** The program is systematically structured to exercise the processor's control matrix heavily. It utilizes conditional loops and status boundaries via branch variants (`blt`, `bge`, `bne`, `beq`), performs active array element swapping using memory load-store paths (`lw`, `sw`), and computes running index modifications through pointer manipulation commands (`addi`, `add`). [cite_start]Passing this verification setup guarantees that all structural paths, multiplexer selectors, and flag generation lines inside the control unit operate in harmony.
+* **Instruction Coverage & Stress Profile:** The program is systematically structured to exercise the processor's control matrix heavily. It utilizes conditional loops and status boundaries via branch variants (`blt`, `bge`, `bne`, `beq`), performs active array element swapping using memory load-store paths (`lw`, `sw`), and computes running index modifications through pointer manipulation commands (`addi`, `add`).Passing this verification setup guarantees that all structural paths, multiplexer selectors, and flag generation lines inside the control unit operate in harmony.
