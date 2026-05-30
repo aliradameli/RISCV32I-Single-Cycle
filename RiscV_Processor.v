@@ -4,11 +4,11 @@ module RiscV_Processor (
 );
     wire [2:0] ALU_Function;
     wire AluSrc;
-    wire ResultScr;
-    wire ImmScr;
+    wire [1:0] ResultSrc;
+    wire [2:0] ImmSrc;
     wire RegWrite; 
     wire MemWrite;
-    wire PCSrc ;
+    wire [1:0] PCSrc ;
     wire zero ;
     wire [6:0] opcode;
     wire [2:0] func3;
@@ -23,8 +23,8 @@ module RiscV_Processor (
         .slt(slt),
         .ALU_Function(ALU_Function),
         .AluSrc(AluSrc),
-        .ResultScr(ResultScr),
-        .ImmScr(ImmScr),
+        .ResultSrc(ResultSrc),
+        .ImmSrc(ImmSrc),
         .RegWrite(RegWrite),
         .MemWrite(MemWrite),
         .PCSrc(PCSrc),
@@ -39,8 +39,8 @@ module RiscV_Processor (
         .slt(slt),
         .ALU_Function(ALU_Function),
         .AluSrc(AluSrc),
-        .ResultScr(ResultScr),
-        .ImmScr(ImmScr),
+        .ResultSrc(ResultSrc),
+        .ImmSrc(ImmSrc),
         .RegWrite(RegWrite),
         .MemWrite(MemWrite),
         .PCSrc(PCSrc)

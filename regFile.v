@@ -10,8 +10,9 @@ module regFile  (
 );
 
     reg [31:0] regArray [0:31];
+    integer i;
     initial begin
-        integer i;
+
         for (i = 0; i < 32; i = i + 1) begin
             regArray[i] = 32'b0;
         end
@@ -26,7 +27,10 @@ module regFile  (
     always @(posedge clk)begin
       
         if (WrEn) begin
-            regArray[WrAdrr] <= WrData;
+            if (WrAdrr != 5'd0)begin
+                
+                regArray[WrAdrr] <= WrData;
+            end
         end
     end
 endmodule

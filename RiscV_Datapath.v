@@ -5,10 +5,10 @@ module RiscV_Datapath (
     input [2:0] ALU_Function,
     input AluSrc,
     input [1:0] ResultSrc,
-    input [1:0] ImmSrc,
+    input [2:0] ImmSrc,
     input RegWrite,
     input MemWrite,
-    input PCSrc,
+    input [1:0] PCSrc,
     output [6:0] opcode,
     output [2:0] func3,
     output [6:0] func7,
@@ -16,15 +16,15 @@ module RiscV_Datapath (
     output  slt
 );
 
-    reg [31:0] PC;
+    wire [31:0] PC;
     wire [31:0] next_PC;
     // Instruction and data memory interfaces
     wire [31:0] instruction;
     reg_32bit pc_reg (
         .clk(clk),
         .rst_(rst_),
-        .Q(next_PC),
-        .D(PC)
+        .D(next_PC),
+        .Q(PC)
     );
 
     instMem instr_mem (
@@ -33,9 +33,6 @@ module RiscV_Datapath (
     );
 
     wire [4:0] rs1, rs2, rd;
-    wire [6:0] opcode;
-    wire [2:0] func3;
-    wire [6:0] func7;
     // Instruction fields
     assign opcode = instruction[6:0];
     assign rd = instruction[11:7];
@@ -82,7 +79,7 @@ module RiscV_Datapath (
     );
 
     wire [31:0] mem_read_data;
-    dataMem (
+    dataMem d(
         .addr(alu_out),     
         .WD(read_data2),    
         .WrEn(MemWrite),               
@@ -93,7 +90,7 @@ module RiscV_Datapath (
             RESULTSRC_MEM = 2'b01,
             RESULTSRC_PC_PLUS_4 = 2'b10;
 
-    wire [31:0] pc_jalr , pc_plus_4, pc_plus_imm;
+    wire [31:0] pc_plus_4;
 
     assign regResult = (ResultSrc == RESULTSRC_ALU) ? alu_out :
                        (ResultSrc == RESULTSRC_MEM) ? mem_read_data :

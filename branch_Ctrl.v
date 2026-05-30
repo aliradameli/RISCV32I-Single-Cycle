@@ -4,14 +4,15 @@ module branch_Ctrl(
     input zero,
     input slt,
     output reg Branch
-)
-    always @(isBranch or func3 or zero or slt) begin
-        //defualt value 
-        Branch = 1'b0; 
-        param  BEQ = 4'h0,
+);
+        localparam  BEQ = 4'h0,
                     BNE = 4'h1,
                     BLT = 4'h4,
                     BGE = 4'h5;
+    always @(isBranch or func3 or zero or slt) begin
+        //defualt value 
+        Branch = 1'b0; 
+
         if (isBranch) begin
             case (func3)
                 BEQ: Branch = zero;

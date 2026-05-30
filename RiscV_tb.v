@@ -12,10 +12,13 @@ module RiscV_tb ();
     end
 
     initial begin
-        rst = 1; 
-        repeat (2) @(posedge clk);
-        rst = 0;
-        repeat (2000) @(posedge clk);
+	clk = 0 ;
+        rst = 1;#1 rst = 0;
+        repeat (3) @(posedge clk);
+        rst = 1;
+        while (CUT.riscv_datapath.PC < 32'd76) begin
+            @(posedge clk);
+        end
         $stop;
     end
 

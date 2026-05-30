@@ -6,10 +6,10 @@ module RiscV_Controller (
     input zero,
     input slt,
 
-    output reg [2:0] ALU_Function,
+    output [2:0] ALU_Function,
     output reg AluSrc,
     output reg [1:0] ResultSrc,
-    output reg [1:0] ImmSrc,
+    output reg [2:0] ImmSrc,
     output reg RegWrite,
     output reg MemWrite,
     output reg [1:0] PCSrc
@@ -68,7 +68,7 @@ always @(opcode)begin
             MemWrite  = 1'b1; 
             LookAtFnc = 1'b0; //DC
             ALUopcTyp = 2'b00; 
-            ImmSrc    = 2'b00; 
+            ImmSrc    = 2'b01; 
             isBranch  = 1'b0; 
             jumpOp    = 2'b00; 
         end
@@ -98,7 +98,7 @@ always @(opcode)begin
             ResultSrc = 2'b10; 
             AluSrc    = 1'b0; //DC
             RegWrite  = 1'b1; 
-            MemWrite  = 1'd0; 
+            MemWrite  = 1'b0; 
             LookAtFnc = 1'b0; 
             ALUopcTyp = 2'b00; //DC
             ImmSrc    = 2'b11; 
@@ -116,8 +116,6 @@ always @(opcode)begin
             isBranch  = 1'b0; 
             jumpOp    = 2'b10; 
         end
-
-        default: Branch = 1'b0; 
     endcase
 
 
@@ -125,13 +123,13 @@ always @(opcode)begin
 
 
 end
-reg Branch;
+wire Branch;
 
 always @(Branch or jumpOp)begin
 
     PCSrc = 2'b00;
 
-    if (isBranch || (jumpOp == 2'b01))begin
+    if (Branch || (jumpOp == 2'b01))begin
         PCSrc = 2'b01; // PC += imm
     end
     else if(jumpOp == 2'b10) begin
@@ -147,11 +145,11 @@ ALU_Ctrl alu_ctrl(
     .ALUFnc(ALU_Function)
 );
 
-Branch_Ctrl branch_ctrl(
+branch_Ctrl branch_ctrl(
     .isBranch(isBranch),
     .func3(func3), 
     .zero(zero),
     .slt(slt),
     .Branch(Branch)
-)
+);
 endmodule
